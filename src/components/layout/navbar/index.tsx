@@ -4,7 +4,7 @@ export async function Navbar() {
   // const menu = await getMenu('main-menu');
 
   return (
-    <nav className="relative flex items-center justify-between p-4 lg:px-6">
+    <nav className="relative flex items-center justify-between bg-black p-4 lg:px-6">
       {/* <div className="block flex-none md:hidden"> */}
       {/*   <Suspense fallback={null}> */}
       {/*     <MobileMenu menu={menu} /> */}
@@ -15,7 +15,7 @@ export async function Navbar() {
           <Link
             href="/"
             prefetch={true}
-            className="mr-2 flex w-full items-center justify-center md:w-auto lg:mr-6"
+            className="mr-2 flex w-full items-center justify-center text-white md:w-auto lg:mr-6"
           >
             Logo
             {/* <LogoSquare /> */}
