@@ -1,6 +1,7 @@
 {
   "commands": {
     "dev": "pnpm dev -p 3005",
-    "build": "pnpm build"
+    "build": "pnpm build",
+    "codegen": "pnpm graphql-codegen"
    }
 }

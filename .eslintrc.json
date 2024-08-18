@@ -1,3 +1,7 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": "next/core-web-vitals",
+  "ignores": [
+    "./types/storefront.generated.d.ts",
+    "./types/storefront.types.d.ts"
+  ]
 }
