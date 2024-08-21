@@ -26,8 +26,8 @@ export class ShopifyBase {
     headers?: HeadersInit;
     query: string;
     tags?: string[];
-    variables?: ExtractVariables<T>;
-  }): Promise<{ status: number; body: T } | never> {
+    variables?: Record<string, unknown> | undefined;
+  }): Promise<{ status: number; body: { data: T } } | never> {
     invariant(
       SHOPIFY_STOREFRONT_ACCESS_TOKEN,
       "SHOPIFY_STOREFRONT_ACCESS_TOKEN is required",

@@ -1,7 +1,12 @@
+import { ShopifyConfig } from "@/services/shopify/config/shopify-config";
+import Image from "next/image";
 import Link from "next/link";
+
+const shopifyConfig = new ShopifyConfig();
 
 export async function Navbar() {
   // const menu = await getMenu('main-menu');
+  const config = await shopifyConfig.fetchConfig();
 
   return (
     <nav className="relative flex items-center justify-between bg-black p-4 lg:px-6">
@@ -17,7 +22,11 @@ export async function Navbar() {
             prefetch={true}
             className="mr-2 flex w-full items-center justify-center text-white md:w-auto lg:mr-6"
           >
-            Logo
+            {config.logo ? (
+              <Image src={config.logo} alt="Logo" width={50} height={50} />
+            ) : (
+              "Logo"
+            )}
             {/* <LogoSquare /> */}
             {/* <div className="ml-2 flex-none text-sm font-medium uppercase md:hidden lg:block"> */}
             {/*   {SITE_NAME} */}
