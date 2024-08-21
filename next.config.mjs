@@ -1,7 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["cdn.shopify.com"], // Add 'cdn.shopify.com' to the list of allowed domains
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cdn.shopify.com",
+        port: "", // You can leave this empty unless the URL uses a specific port.
+        pathname: "/s/files/**", // This allows any image under /s/files/ on cdn.shopify.com
+      },
+    ],
   },
 };
 
