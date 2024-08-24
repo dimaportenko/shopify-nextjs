@@ -2,10 +2,7 @@ import { SHOPIFY_GRAPHQL_API_ENDPOINT } from "@/lib/constants";
 import { isShopifyError } from "@/lib/type-guards";
 import { ensureStartsWith } from "@/lib/utils";
 import invariant from "tiny-invariant";
-
-type ExtractVariables<T> = T extends { variables: object }
-  ? T["variables"]
-  : never;
+import { ShopifyResponse } from "./types";
 
 const domain = process.env.SHOPIFY_STORE_DOMAIN
   ? ensureStartsWith(process.env.SHOPIFY_STORE_DOMAIN, "https://")
@@ -49,7 +46,7 @@ export class ShopifyBase {
         ...(tags && { next: { tags } }),
       });
 
-      const body = await result.json();
+      const body: ShopifyResponse<T> = await result.json();
 
       if (body.errors) {
         throw body.errors[0];
