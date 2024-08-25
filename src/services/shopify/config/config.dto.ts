@@ -3,6 +3,7 @@ import { GetMenuQuery } from "@/types/storefront.generated";
 
 export type ConfigDTO = {
   logo?: string;
+  shopName?: string;
 };
 
 export const configDTO = (data: MetaobjectQuery): ConfigDTO => {
@@ -14,6 +15,12 @@ export const configDTO = (data: MetaobjectQuery): ConfigDTO => {
         config = {
           ...config,
           logo: field?.reference?.image?.url,
+        };
+        break;
+      case "shop_name":
+        config = {
+          ...config,
+          shopName: field?.value,
         };
         break;
       default:

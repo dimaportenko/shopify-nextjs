@@ -2,7 +2,6 @@ import { Suspense } from "react";
 import { shopifyConfig } from "@/services/shopify/config/shopify-config";
 import Image from "next/image";
 import Link from "next/link";
-import { Menu } from "@/types/storefront.types";
 
 export async function Navbar() {
   const [config, menu] = await Promise.all([
@@ -28,7 +27,7 @@ export async function Navbar() {
               {config.logo ? (
                 <Image src={config.logo} alt="Logo" width={50} height={50} />
               ) : (
-                "Dima Store"
+                config.shopName || "Dima Store"
               )}
             </Link>
           </Suspense>
