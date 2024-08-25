@@ -1,4 +1,5 @@
 import { MetaobjectQuery } from "@/types/storefront.generated";
+import { GetMenuQuery } from "@/types/storefront.generated";
 
 export type ConfigDTO = {
   logo?: string;
@@ -22,3 +23,19 @@ export const configDTO = (data: MetaobjectQuery): ConfigDTO => {
 
   return config;
 };
+
+const removeDomainFromUrl = (url: string): string => {
+  return url.replace(/^https?:\/\/[^\/]+/, '');
+};
+
+export const menuDTO = (data?: GetMenuQuery) => {
+  return data?.menu ? {
+    ...data.menu,
+    items: data.menu.items.map(item => ({
+      ...item,
+      path: removeDomainFromUrl(item.url)
+    }))
+  } : undefined;
+};
+
+export type MenuDTO = ReturnType<typeof menuDTO>;

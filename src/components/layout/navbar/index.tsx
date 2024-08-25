@@ -1,12 +1,14 @@
-import { ShopifyConfig } from "@/services/shopify/config/shopify-config";
+import { Suspense } from "react";
+import { shopifyConfig } from "@/services/shopify/config/shopify-config";
 import Image from "next/image";
 import Link from "next/link";
-
-const shopifyConfig = new ShopifyConfig();
+import { Menu } from "@/types/storefront.types";
 
 export async function Navbar() {
-  // const menu = await getMenu('main-menu');
-  const config = await shopifyConfig.fetchConfig();
+  const [config, menu] = await Promise.all([
+    shopifyConfig.fetchConfig(),
+    shopifyConfig.getMenu("main-menu"),
+  ]);
 
   return (
     <nav className="relative flex items-center justify-between bg-black p-4 lg:px-6">
@@ -17,30 +19,27 @@ export async function Navbar() {
       {/* </div> */}
       <div className="flex w-full items-center">
         <div className="flex w-full md:w-1/3">
-          <Link
-            href="/"
-            prefetch={true}
-            className="mr-2 flex w-full items-center justify-center text-white md:w-auto lg:mr-6"
-          >
-            {config.logo ? (
-              <Image src={config.logo} alt="Logo" width={50} height={50} />
-            ) : (
-              "Logo"
-            )}
-            {/* <LogoSquare /> */}
-            {/* <div className="ml-2 flex-none text-sm font-medium uppercase md:hidden lg:block"> */}
-            {/*   {SITE_NAME} */}
-            {/* </div> */}
-          </Link>
-          {/*
-          {menu.length ? (
+          <Suspense fallback={null}>
+            <Link
+              href="/"
+              prefetch={true}
+              className="mr-2 flex w-full items-center justify-center text-white md:w-auto lg:mr-6"
+            >
+              {config.logo ? (
+                <Image src={config.logo} alt="Logo" width={50} height={50} />
+              ) : (
+                "Dima Store"
+              )}
+            </Link>
+          </Suspense>
+          {menu && menu.items.length ? (
             <ul className="hidden gap-6 text-sm md:flex md:items-center">
-              {menu.map((item: Menu) => (
+              {menu.items.map((item) => (
                 <li key={item.title}>
                   <Link
                     href={item.path}
                     prefetch={true}
-                    className="text-neutral-500 underline-offset-4 hover:text-black hover:underline dark:text-neutral-400 dark:hover:text-neutral-300"
+                    className="underline-offset-4 hover:underline text-neutral-400 hover:text-neutral-300"
                   >
                     {item.title}
                   </Link>
@@ -48,7 +47,6 @@ export async function Navbar() {
               ))}
             </ul>
           ) : null}
-          */}
         </div>
         {/* <div className="hidden justify-center md:flex md:w-1/3"> */}
         {/*   <Suspense fallback={<SearchSkeleton />}> */}

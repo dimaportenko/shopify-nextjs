@@ -2,8 +2,8 @@
 
 ### Next
 - [ ] Header
-    - [ ] Logo
-    - [ ] Menu
+    - [x] Logo
+    - [x] Menu
     - [ ] Mobile
 
 
