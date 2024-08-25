@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { shopifyConfig } from "@/services/shopify/config/shopify-config";
 import Image from "next/image";
 import Link from "next/link";
+import MobileMenu from "./mobile-menu";
 
 export async function Navbar() {
   const [config, menu] = await Promise.all([
@@ -11,11 +12,11 @@ export async function Navbar() {
 
   return (
     <nav className="relative flex items-center justify-between bg-black p-4 lg:px-6">
-      {/* <div className="block flex-none md:hidden"> */}
-      {/*   <Suspense fallback={null}> */}
-      {/*     <MobileMenu menu={menu} /> */}
-      {/*   </Suspense> */}
-      {/* </div> */}
+      <div className="block flex-none md:hidden">
+        <Suspense fallback={null}>
+          <MobileMenu menu={menu} />
+        </Suspense>
+      </div>
       <div className="flex w-full items-center">
         <div className="flex w-full md:w-1/3">
           <Suspense fallback={null}>
