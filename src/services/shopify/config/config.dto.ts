@@ -1,3 +1,4 @@
+import { removeDomainFromUrl } from "@/lib/utils";
 import { MetaobjectQuery } from "@/types/storefront.generated";
 import { GetMenuQuery } from "@/types/storefront.generated";
 
@@ -29,10 +30,6 @@ export const configDTO = (data: MetaobjectQuery): ConfigDTO => {
   });
 
   return config;
-};
-
-const removeDomainFromUrl = (url: string): string => {
-  return url.replace(/^https?:\/\/[^\/]+/, '');
 };
 
 export const menuDTO = (data?: GetMenuQuery) => {
