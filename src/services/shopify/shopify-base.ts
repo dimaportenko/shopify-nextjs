@@ -11,7 +11,10 @@ const endpoint = `${domain}${SHOPIFY_GRAPHQL_API_ENDPOINT}`;
 const SHOPIFY_STOREFRONT_ACCESS_TOKEN =
   process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN;
 
-export class ShopifyBase {
+export abstract class ShopifyBase {
+  protected abstract endpoint: string;
+  protected abstract accessToken: string;
+
   async shopifyFetch<T>({
     cache = "force-cache",
     headers,
@@ -25,17 +28,11 @@ export class ShopifyBase {
     tags?: string[];
     variables?: Record<string, unknown> | undefined;
   }): Promise<{ status: number; body: { data: T } } | never> {
-    invariant(
-      SHOPIFY_STOREFRONT_ACCESS_TOKEN,
-      "SHOPIFY_STOREFRONT_ACCESS_TOKEN is required",
-    );
-
     try {
-      const result = await fetch(endpoint, {
+      const result = await fetch(this.endpoint, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "X-Shopify-Storefront-Access-Token": SHOPIFY_STOREFRONT_ACCESS_TOKEN,
           ...headers,
         },
         body: JSON.stringify({

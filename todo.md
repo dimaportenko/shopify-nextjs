@@ -4,8 +4,13 @@
 - [ ] Header
     - [x] Logo
     - [x] Menu
-    - [ ] Mobile
-
+    - [x] Mobile
+    - [ ] Search
+    - [ ] Cart
+    - [ ] Account
+- [ ] Home Slideshow
+- [ ] Home Products Collection
+- [ ] Footer
 
 ### For Future
 - [ ] Metadata

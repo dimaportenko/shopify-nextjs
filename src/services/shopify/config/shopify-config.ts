@@ -4,19 +4,19 @@ import {
   MetaobjectQuery,
   MetaobjectQueryVariables,
 } from "@/types/storefront.generated";
-import { ShopifyBase } from "../shopify-base";
+import { shopifyStorefront } from "../shopify-storefront";
 import { getMenuQuery, getMetaobjectQuery } from "./queries.storefront";
 import { configDTO, menuDTO } from "./config.dto";
 import { TAGS } from "../constants";
 
-export class ShopifyConfig extends ShopifyBase {
+export class ShopifyConfig {
   fetchConfig = async () => {
     const variables: MetaobjectQueryVariables = {
       type: "headless_config",
       handle: "main",
     };
 
-    const response = await this.shopifyFetch<MetaobjectQuery>({
+    const response = await shopifyStorefront.fetch<MetaobjectQuery>({
       query: getMetaobjectQuery,
       variables,
       tags: [TAGS.config]
@@ -30,7 +30,7 @@ export class ShopifyConfig extends ShopifyBase {
       handle,
     };
 
-    const response = await this.shopifyFetch<GetMenuQuery>({
+    const response = await shopifyStorefront.fetch<GetMenuQuery>({
       query: getMenuQuery,
       variables,
       tags: [TAGS.config]
