@@ -3,7 +3,7 @@ import {
   GetMenuQueryVariables,
   MetaobjectQuery,
   MetaobjectQueryVariables,
-} from "@/types/storefront.generated";
+} from "@/types/storefront/storefront.generated";
 import { shopifyStorefront } from "../shopify-storefront";
 import { getMenuQuery, getMetaobjectQuery } from "./queries.storefront";
 import { configDTO, menuDTO } from "./config.dto";

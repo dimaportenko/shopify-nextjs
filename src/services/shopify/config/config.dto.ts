@@ -1,6 +1,6 @@
 import { removeDomainFromUrl } from "@/lib/utils";
-import { MetaobjectQuery } from "@/types/storefront.generated";
-import { GetMenuQuery } from "@/types/storefront.generated";
+import { MetaobjectQuery } from "@/types/storefront/storefront.generated";
+import { GetMenuQuery } from "@/types/storefront/storefront.generated";
 
 export type ConfigDTO = {
   logo?: string;

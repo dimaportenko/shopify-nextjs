@@ -1,15 +1,6 @@
 import { isShopifyError } from "@/lib/type-guards";
-import { ensureStartsWith } from "@/lib/utils";
-import invariant from "tiny-invariant";
 import { ShopifyResponse } from "./types";
-import { SHOPIFY_GRAPHQL_API_ENDPOINT, TAGS } from "./constants";
-
-const domain = process.env.SHOPIFY_STORE_DOMAIN
-  ? ensureStartsWith(process.env.SHOPIFY_STORE_DOMAIN, "https://")
-  : "";
-const endpoint = `${domain}${SHOPIFY_GRAPHQL_API_ENDPOINT}`;
-const SHOPIFY_STOREFRONT_ACCESS_TOKEN =
-  process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN;
+import { TAGS } from "./constants";
 
 export abstract class ShopifyBase {
   protected abstract endpoint: string;
